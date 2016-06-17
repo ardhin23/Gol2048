@@ -1,0 +1,210 @@
+body {
+	padding: 0; 
+	height: 100vh;
+}
+#the-screen {
+	background-color:  #CC9933;
+	height: 95%;
+	width: 100%;
+}
+#the-board {
+	background-color:  #CC9933;
+	float: left;
+	height: 100%;
+	width: 75%;
+}
+
+#the-sidepanel {
+	background-color:  #CC9933;
+	float: right;
+	height: 100%;
+	margin: 0;
+	width: 25%;
+}
+#the-panel {
+	background-color:  #CC9933;
+	height: 5%;
+	padding: 10px;
+	width: 100%; 
+}
+
+
+
+
+.grid-cell {
+	background-color: rgba(204, 102, 0, 0.1);
+	float: left;
+	padding: 1px;
+}
+.grid-cell-inner {
+	background-color: #CC9933;
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+.grid-info {
+	display: block;
+	font-size: 8px;
+	font-weight: bold;
+	color: black;
+}
+.cell {
+	border-radius: 50%;
+	height: 80%;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+}
+.cell-alive {
+}
+.cell-dead {
+	background-color: rgba(0,0,0,0.2);
+}
+
+.cell-level-0 {
+}
+
+.cell-level-1 {
+	background-color: #999933  !important;
+}
+.cell-level-2 {
+	background-color: yellow !important;
+}
+.cell-level-3 {
+	background-color: lime !important;
+}
+.cell-level-4{
+	background-color: green !important;
+}
+.cell-level-5 {
+	background-color: blue !important;
+}
+.cell-level-6 {
+	background-color: purple !important;
+}
+.cell-level-7 {
+	background-color: magenta !important;
+}
+.cell-level-8 {
+	background-color: red !important;
+}
+.cell-level-9 {
+	background-color: orange !important;
+}
+.cell-level-10 {
+	background-color: gold !important;
+}
+
+
+
+.cell-level-99 {
+	background-color: black !important;
+}
+
+
+
+.panel-button-container {
+	display: block;
+	height: 150px;
+	margin: 10px auto;
+	position: relative;
+	width : 75%;
+}
+
+.panel-button {
+	cursor: pointer;
+	display: block;
+	height: 40px;
+	margin: 10px auto;
+	position: relative;
+	width : 75%;
+
+	background-color: #996600;
+	border: solid 3px gold;
+}
+
+
+
+.panel-button-2 {
+	cursor: pointer;
+	display: inline-block;
+	height: 100%;
+	position: relative;
+	width : 45%;
+
+	background-color: #996600;
+	border: solid 3px gold;
+}
+.panel-button-2#left-button {
+	float: left;
+}
+.panel-button-2#right-button {
+	float: right;
+}
+
+
+.panel-button i.fa,  .panel-button-2 i.fa{
+	color : gold;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.panel-carousel{
+	display: block;
+	height: 40px;
+	margin: 10px auto;
+	position: relative;
+	width : 75%;
+	
+	background-color: #996600;
+	border: solid 3px gold;
+}
+.panel-carousel .item {
+	color: gold;
+	cursor: pointer;
+	height: 100%;
+	padding-top: 8px;
+	margin: 0;
+}
+.panel-carousel a {
+	background-image: none !important;
+	background-repeat: no-repeat !important;
+	background-color: gold;
+}
+.panel-carousel span {
+	display: block;
+	font-weight: bold;
+	float: none;
+	margin: 0 auto;
+	position: static;
+	text-align: center;
+}
+
+@media screen and (max-width: 640px) {
+	body {
+		height:500px;
+	}
+	#the-board {
+		width: 100% !important;
+	}
+	#the-sidepanel {
+		width: 100% !important;
+	}
+	
+	.cell-dead {
+		background-color: rgba(200,0,0,0.5);
+	}
+}
+@media screen and (max-width: 480px) {
+	.cell-dead {
+		background-color: rgba(200,0,200,0.6);
+	}
+}
+@media screen and (max-width: 320px) {
+	.cell-dead {
+		background-color: rgba(0,0,0,0.9);
+	}
+}

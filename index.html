@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Muhammad Ardhin">
+	
+    <link rel="icon" href="Stuff/favicon.ico">
+
+    <title>Responsive Crazy Game of Life</title>
+	
+	
+    <link href="Stuff/css/bootstrap.min.css" rel="stylesheet">
+	<link href="Stuff/css/font-awesome.min.css" rel="stylesheet">
+	<link href="Stuff/css/RGCL.css" rel="stylesheet">
+	
+	<script src="Stuff/js/ie-emulation-modes-warning.js"></script>	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+	<div id="the-screen">
+		<div id="the-board">
+		
+		</div>
+		<div id="the-sidepanel">
+			
+			<div id="forward-button" class="panel-button">
+				<i class="fa fa-step-forward"></i>
+			</div>
+			<div id="play-button" class="panel-button">
+				<i class="fa fa-play"></i>
+			</div>
+			<div id="pause-button" class="panel-button">
+				<i class="fa fa-pause"></i>
+			</div>
+			<div id="pattern-carousel" class="carousel slide panel-carousel" data-ride="carousel" data-interval="false">
+				<div class="carousel-inner" role="listbox">
+					<div id="type1" class="item active">
+						<span>Type 1</span>
+					</div>
+					<div id="type2" class="item">
+						<span>Type 2</span>
+					</div>
+					<div id="type3" class="item">
+						<span>Type 3</span>
+					</div>
+					<!--
+					<div class="item active">
+						<span>Still lifes : BLOCK</span>
+					</div>
+					<div class="item">
+						<span>Still lifes : BEEHIVE</span> 
+					</div>
+					<div class="item">
+						<span>Still lifes : BOAT</span> 
+					</div>
+					<div class="item">
+						<span>Oscillators : BLINKER</span> 
+					</div>
+					<div class="item">
+						<span>Oscillators : TOAD</span> 
+					</div>
+					<div class="item">
+						<span>Oscillators : BEACON</span> 
+					</div>
+					<div class="item">
+						<span>Oscillators : PULSAR</span> 
+					</div>
+					<div class="item">
+						<span>Oscillators : PENTADECATHLON</span> 
+					</div>
+					<div class="item">
+						<span>Spaceships : GLIDER</span> 
+					</div>
+					<div class="item">
+						<span>Spaceships : LWSS</span> 
+					</div>
+					-->
+				</div>
+				<a class="left carousel-control" href="#pattern-carousel" role="button" data-slide="prev">
+					<!-- <i class="fa fa-hand-o-left"></i>-->
+				</a>
+				<a class="right carousel-control" href="#pattern-carousel" role="button" data-slide="next">
+					<!-- <i class="fa fa-hand-o-right"></i>-->
+				</a>
+			</div>
+
+			<br/>
+			<div id="up-button" class="panel-button">
+				<i class="fa fa-arrow-circle-up fa-2x"></i>
+			</div>
+			<div class="panel-button-container">
+				<div id="left-button" class="panel-button-2">
+					<i class="fa fa-arrow-circle-left fa-2x"></i>
+				</div>
+				<div id="right-button" class="panel-button-2">
+					<i class="fa fa-arrow-circle-right fa-2x"></i>
+				</div>
+			</div>
+			<div id="down-button" class="panel-button">
+				<i class="fa fa-arrow-circle-down fa-2x"></i>
+			</div>
+	
+		
+			
+			
+		</div>
+	</div>
+	<div id="the-panel">
+	</div>
+	
+		
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="Stuff/js/jquery.min.js"></script>
+	<script src="Stuff/js/bootstrap.min.js"></script>
+	<script src="Stuff/js/RCGL.js"></script>
+	<script>
+	var pauseState = 1;
+	var timeVar;
+	$(document).ready(function() {
+		//var browserHeight = $(window).height();
+		//$('#the-board ').height(browserHeight - 75);
+		
+		
+	
+		var boardID = '#the-board';
+		$('#pause-button').hide();
+		var boL = new boardOfLife(10,10);
+		boL.initCellCoordinates();
+		boL.consolePrint();
+		boL.draw(boardID);
+
+		$("#forward-button").click(function() {
+			boL.next();
+			boL.draw(boardID);
+			
+		});
+		$("#play-button").click(function() {
+			$(this).hide();
+			$('#pause-button').show();
+			window.pauseState = 0;
+			timeVar = setInterval(function() {boL.next(); boL.draw(boardID);}, 500);
+		});
+		$("#pause-button").click(function() {
+			$(this).hide();
+			$('#play-button').show();
+			window.pauseState = 1;
+			clearInterval(timeVar);
+		});
+	
+		$('#up-button').click(function() {
+			boL.moveAllCellUp(boardID);
+		});
+		
+		$('#down-button').click(function() {
+			boL.moveAllCellDown(boardID);
+		});
+		
+		$('#left-button').click(function() {
+			boL.moveAllCellLeft(boardID);
+		});
+		$('#right-button').click(function() {
+			boL.moveAllCellRight(boardID);
+		});
+		
+		$('#type1').click(function() {
+			boL.initCellCoordinates();
+			boL.initialType1();
+			boL.draw(boardID);
+			
+		});
+		$('#type2').click(function() {
+			boL.initCellCoordinates();
+			boL.initialType2();
+			boL.draw(boardID);
+			
+		});
+		$('#type3').click(function() {
+			boL.initCellCoordinates();
+			boL.initialType3();
+			boL.draw(boardID);
+			
+		});
+		
+		
+		
+	
+		
+	});
+	</script>
+  </body>
+</html>
